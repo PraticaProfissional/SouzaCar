@@ -1,7 +1,7 @@
 # SouzaCar
-RepositÛrio de documentaÁ„o do projeto SouzaCar
+Reposit√≥rio de documenta√ß√£o do projeto SouzaCar
 <hr>
-<h3>O RepositÛrio dever· conter a seguinte estrutura de pastas</h3>
+<h3>O Reposit√≥rio dever√° conter a seguinte estrutura de pastas</h3>
 <ol>
 	<li>Modelagem_de_Negocios</li>
 	<ol>
@@ -48,42 +48,42 @@ RepositÛrio de documentaÁ„o do projeto SouzaCar
 	<li>Gerenciamento_de_Projeto</li>
 	<ol>
 		<li>Planejamento</li>
-  		*Estrutura analÌtica do projeto;<br>
+  		*Estrutura anal√≠tica do projeto;<br>
       *Cronograma de atividades;
 		<li>Ata_de_Reuniao</li>
-  		*Termo aceite de inÌcio do projeto;<br>
-      *Termo de aceite de congelamento de requisitos e protÛtipos;
+  		*Termo aceite de in√≠cio do projeto;<br>
+      *Termo de aceite de congelamento de requisitos e prot√≥tipos;
     <li>Relatorio</li>
-      *RelatÛrio de n„o conformidades conhecidas;<br>
-      *Sum·rio das entregas;
+      *Relat√≥rio de n√£o conformidades conhecidas;<br>
+      *Sum√°rio das entregas;
   </ol>
 </ol>
 
 <hr>
 
-<h3>Toda vers„o dever· conter a seguinte estrutura</h3>
-X.X.X-<Tipo de Vers„o> <br>
+<h3>Toda vers√£o dever√° conter a seguinte estrutura</h3>
+X.X.X-<Tipo de Vers√£o> <br>
 Ex.: 1.0.0-RELEASE <br>
 Ex: 2.1.0-SNAPSHOT <br>
-</h4>Tipos de Vers„o:</h4>
+</h4>Tipos de Vers√£o:</h4>
 <ol>
   <ol>
     <ul>
-      <li>RELEASE - Diz respeito a uma entrega est·vel, testada e validada armazenada como "TAG";</li>
-      <li>SNAPSHOT - Diz respeito uma vers„o n„o est·vel, normalmente em desenvolvimento;</li>
+      <li>RELEASE - Diz respeito a uma entrega est√°vel, testada e validada armazenada como "TAG";</li>
+      <li>SNAPSHOT - Diz respeito uma vers√£o n√£o est√°vel, normalmente em desenvolvimento;</li>
     </ul>
   </ol>
 </ol>
 
 <hr>
 
-<h3>NumeraÁ„o</h3>
-Todo projeto comeÁa na vers„o 1.0.0-SNAPSHOT;<br>
-A cada entrega parcial (Marcos), incrementa +1 no dÌgito unidade. <br>
-Ex.: 1.0.1-SNAPSHOT;<br>
-Quando ocorrer uma entrega de Fase, vira RELEASE. <br>
-Ex.: 1.0.0-RELEASE;<br>
-ApÛs a entrega de uma Fase, +1 no digito centena e vira SNAPSHOT:<br>
-Ex.: 2.0.0-SNAPSHOT;<br>
-Quando ocorrer n„o conformidades em uma entrega e ocorrer de re-entregar uma Fase, incrementa +1 no dÌgito dezena:<br>
-Ex.: 1.1.0-RELEASE;<br>
+<h3>Numera√ß√£o</h3>
+* Todo projeto come√ßa na vers√£o 1.0.0-SNAPSHOT;<br>
+	*  A cada entrega parcial (Marcos), incrementa +1 no d√≠gito unidade. <br>
+	   Ex.: 1.0.1-SNAPSHOT;<br>
+	*  Quando ocorrer uma entrega de Fase, vira RELEASE. <br>
+	   Ex.: 1.0.0-RELEASE;<br>
+	*  Ap√≥s a entrega de uma Fase, +1 no digito centena e vira SNAPSHOT:<br>
+	   Ex.: 2.0.0-SNAPSHOT;<br>
+	*  Quando ocorrer n√£o conformidades em uma entrega e ocorrer de re-entregar uma Fase, incrementa +1 no d√≠gito dezena:<br>
+	   Ex.: 1.1.0-RELEASE;<br>
