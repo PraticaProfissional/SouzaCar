@@ -13,12 +13,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.com.souzacar.repository.Marca;
+import br.com.souzacar.model.Marca;
 import br.com.souzacar.repository.MarcaRepository;
 import br.com.souzacar.utlis.Response;
 
 @RestController
-@RequestMapping("/Marca")
+@RequestMapping("/api/marcas")
 public class MarcaController {
 
 	@Autowired
@@ -39,8 +39,8 @@ public class MarcaController {
 		this.marca = marca;
 	}
 
-	@CrossOrigin(value = "*")
-	@RequestMapping(value = "/marca/", method = RequestMethod.POST)
+	@CrossOrigin(origins = "*")
+	@RequestMapping(value = "", method = RequestMethod.POST)
 	public @ResponseBody Response insert(@RequestBody Marca marca){
 		try {
 			marcaRepository.save(marca);
@@ -51,8 +51,8 @@ public class MarcaController {
 		return response;
 	}
 	
-	@CrossOrigin(value = "*")
-	@RequestMapping(value = "/marca/{id}", method = RequestMethod.PUT)
+	@CrossOrigin(origins = "*")
+	@RequestMapping(value = "/{id}", method = RequestMethod.PUT)
 	public @ResponseBody Response update(@PathVariable long id, @RequestBody Marca marca){
 		try {
 			marcaRepository.save(marca);
@@ -64,8 +64,8 @@ public class MarcaController {
 		return response;
 	}
 	
-	@CrossOrigin(value = "*")
-	@RequestMapping(value = "/marca/{id}", method = RequestMethod.DELETE)
+	@CrossOrigin(origins = "*")
+	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
 	public @ResponseBody Response delete(@PathVariable long id){
 		marca = marcaRepository.findOne(id);
 		try {
@@ -77,8 +77,8 @@ public class MarcaController {
 		return new Response(marca, null);
 	}
 	
-	@CrossOrigin(value = "*")
-	@RequestMapping(value = "/marca/list", method = RequestMethod.GET)
+	@CrossOrigin(origins = "*")
+	@RequestMapping(value = "", method = RequestMethod.GET)
 	public Response list(){
 		List<Marca> result = new ArrayList<Marca>();
 		Iterator<Marca> iterator = marcaRepository.findAll().iterator();
@@ -86,15 +86,15 @@ public class MarcaController {
 		while(iterator.hasNext()){
 			result.add(iterator.next());
 		}
-		
-		return new Response(marca, null);
+				
+		return new Response(result, null);
 	}
 	
-	@CrossOrigin(value = "*")
-	@RequestMapping(value = "/marca/{id}", method = RequestMethod.GET)
+	@CrossOrigin(origins = "*")
+	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
 	public Response get(@PathVariable long id){
 		marca = marcaRepository.findOne(id);
-		
+
 		return new Response(marca, null);
 	}
 }

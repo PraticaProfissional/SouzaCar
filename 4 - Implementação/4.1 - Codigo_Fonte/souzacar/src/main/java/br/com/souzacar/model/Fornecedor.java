@@ -6,7 +6,11 @@ import org.springframework.stereotype.Component;
 
 @Entity
 @Component
-public class Client extends Person{
+public class Fornecedor extends Person {
 
+	public Fornecedor() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
 
 }

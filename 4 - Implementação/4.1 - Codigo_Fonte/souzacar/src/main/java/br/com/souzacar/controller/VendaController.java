@@ -77,7 +77,7 @@ public class VendaController {
 	}
 	
 	@CrossOrigin(origins = "*")
-	@RequestMapping(value = "/venda/list", method = RequestMethod.GET)
+	@RequestMapping(value = "", method = RequestMethod.GET)
 	public Response list(){
 		List<Venda> result = new ArrayList<Venda>();
 		Iterator<Venda> iterator = vendaRepository.findAll().iterator();
