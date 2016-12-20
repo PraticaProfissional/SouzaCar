@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
 
 @Entity
 @Component
-public class Compra {
+public class OrderService {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)

@@ -13,39 +13,39 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.com.souzacar.model.Modelo;
-import br.com.souzacar.repository.ModeloRepository;
+import br.com.souzacar.model.Model;
+import br.com.souzacar.repository.ModelRepository;
 import br.com.souzacar.utlis.Response;
 
 @RestController
-@RequestMapping("/modelo")
-public class ModeloController {
+@RequestMapping("/api/models")
+public class ModelController {
 
 	@Autowired
-	private ModeloRepository modeloRepository;
+	private ModelRepository modelRepository;
 	@Autowired
 	private Response response;
 	@Autowired
-	private Modelo modelo;
+	private Model model;
 	
-	public ModeloController() {
+	public ModelController() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	public ModeloController(ModeloRepository modeloRepository, Response response, Modelo modelo) {
+	public ModelController(ModelRepository modelRepository, Response response, Model model) {
 		super();
-		this.modeloRepository = modeloRepository;
+		this.modelRepository = modelRepository;
 		this.response = response;
-		this.modelo = modelo;
+		this.model = model;
 	}
 	
 	@CrossOrigin(value = "*")
-	@RequestMapping(value = "/modelo/", method = RequestMethod.POST)
-	public @ResponseBody Response insert(@RequestBody Modelo modelo){
+	@RequestMapping(value = "", method = RequestMethod.POST, produces = "application/json")
+	public @ResponseBody Response insert(@RequestBody Model model){
 		try {
-			modeloRepository.save(modelo);
-			response.setData(modelo);
+			modelRepository.save(model);
+			response.setData(model);
 		} catch (Exception e) {
 			response.setStatus(500, e.getMessage());
 		}
@@ -54,11 +54,11 @@ public class ModeloController {
 	}
 	
 	@CrossOrigin(value = "*")
-	@RequestMapping(value = "/modelo/{id}", method = RequestMethod.PUT)
-	public @ResponseBody Response update(@PathVariable long id, @RequestBody Modelo modelo){
+	@RequestMapping(value = "/{id}", method = RequestMethod.PUT, produces = "application/json")
+	public @ResponseBody Response update(@PathVariable long id, @RequestBody Model model){
 		try {
-			modeloRepository.save(modelo);
-			response.setData(modelo);
+			modelRepository.save(model);
+			response.setData(model);
 		} catch (Exception e) {
 			response.setStatus(500, e.getMessage());
 		}
@@ -67,36 +67,36 @@ public class ModeloController {
 	}
 	
 	@CrossOrigin(value = "*")
-	@RequestMapping(value = "/modelo/{id}", method = RequestMethod.DELETE)
+	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE, produces = "application/json")
 	public @ResponseBody Response delete(@PathVariable long id){
-		modelo = modeloRepository.findOne(id);
+		model = modelRepository.findOne(id);
 		try {
-			modeloRepository.delete(modelo);
+			modelRepository.delete(model);
 		} catch (Exception e) {
 			response.setStatus(500, e.getMessage());
 		}
 		
-		return new Response(modelo, null);
+		return new Response(model, null);
 	}
 	
 	@CrossOrigin
-	@RequestMapping(value = "/modelo/list", method = RequestMethod.GET)
+	@RequestMapping(value = "", method = RequestMethod.GET, produces = "application/json")
 	public Response list(){
-		List<Modelo> result = new ArrayList<Modelo>();
-		Iterator<Modelo> iterator = modeloRepository.findAll().iterator();
+		List<Model> result = new ArrayList<Model>();
+		Iterator<Model> iterator = modelRepository.findAll().iterator();
 		
 		while(iterator.hasNext()){
 			result.add(iterator.next());
 		}
 		
-		return new Response(modelo, null);
+		return new Response(result, null);
 	}
 	
 	@CrossOrigin
-	@RequestMapping(value = "/modelo/{id}", method = RequestMethod.GET)
+	@RequestMapping(value = "/{id}", method = RequestMethod.GET, produces = "application/json")
 	public Response get(@PathVariable long id){
-		modelo = modeloRepository.findOne(id);
+		model = modelRepository.findOne(id);
 		
-		return new Response(modelo, null);
+		return new Response(model, null);
 	}
 }

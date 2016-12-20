@@ -6,7 +6,6 @@ import org.springframework.stereotype.Component;
 
 @Entity
 @Component
-public class Client extends Person{
+public class ReceivableAccount extends Account{
 
-	private boolean isActive;
 }

@@ -13,38 +13,38 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.com.souzacar.model.Venda;
-import br.com.souzacar.repository.VendaRepository;
+import br.com.souzacar.model.Sale;
+import br.com.souzacar.repository.SaleRepository;
 import br.com.souzacar.utlis.Response;
 
 @RestController
-@RequestMapping("/venda")
-public class VendaController {
+@RequestMapping("/api/sales")
+public class SaleController {
 
 	@Autowired
-	private  VendaRepository vendaRepository;
+	private  SaleRepository saleRepository;
 	@Autowired
 	private Response response;
 	@Autowired
-	private Venda venda;
+	private Sale sale;
 	
-	public VendaController() {
+	public SaleController() {
 		super();
 	}
 	
-	public VendaController(VendaRepository vendaRepository, Response response, Venda venda) {
+	public SaleController(SaleRepository saleRepository, Response response, Sale sale) {
 		super();
-		this.vendaRepository = vendaRepository;
+		this.saleRepository = saleRepository;
 		this.response = response;
-		this.venda = venda;
+		this.sale = sale;
 	}
 	
 	@CrossOrigin(origins = "*")
-	@RequestMapping(value = "/venda/", method = RequestMethod.POST)
-	public @ResponseBody Response insert(@RequestBody Venda venda){
+	@RequestMapping(value = "", method = RequestMethod.POST, produces = "application/json")
+	public @ResponseBody Response insert(@RequestBody Sale sale){
 		try {
-			vendaRepository.save(venda);
-			response.setData(venda);
+			saleRepository.save(sale);
+			response.setData(sale);
 		} catch (Exception e) {
 			response.setStatus(500, e.getMessage());
 		}
@@ -53,11 +53,11 @@ public class VendaController {
 	}
 	
 	@CrossOrigin(origins = "*")
-	@RequestMapping(value = "/venda/{id}", method = RequestMethod.PUT)
-	public @ResponseBody Response update(@PathVariable long id, @RequestBody Venda venda){
+	@RequestMapping(value = "/{id}", method = RequestMethod.PUT, produces = "application/json")
+	public @ResponseBody Response update(@PathVariable long id, @RequestBody Sale sale){
 		try {
-			vendaRepository.save(venda);
-			response.setData(venda);
+			saleRepository.save(sale);
+			response.setData(sale);
 		} catch (Exception e) {
 			response.setStatus(500, e.getMessage());
 		}
@@ -65,47 +65,47 @@ public class VendaController {
 	}
 	
 	@CrossOrigin(origins = "*")
-	@RequestMapping(value = "/venda/{id}", method = RequestMethod.DELETE)
+	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE, produces = "application/json")
 	public @ResponseBody Response delete(@PathVariable long id){
-		venda = vendaRepository.findOne(id);
+		sale = saleRepository.findOne(id);
 		try {
-			vendaRepository.delete(venda);
+			saleRepository.delete(sale);
 		} catch (Exception e) {
 			response.setStatus(500, e.getMessage());
 		}
-		return new Response(venda, null);
+		return new Response(sale, null);
 	}
 	
 	@CrossOrigin(origins = "*")
-	@RequestMapping(value = "", method = RequestMethod.GET)
+	@RequestMapping(value = "", method = RequestMethod.GET, produces = "application/json")
 	public Response list(){
-		List<Venda> result = new ArrayList<Venda>();
-		Iterator<Venda> iterator = vendaRepository.findAll().iterator();
+		List<Sale> result = new ArrayList<Sale>();
+		Iterator<Sale> iterator = saleRepository.findAll().iterator();
 		
 		while (iterator.hasNext()) {
 			result.add(iterator.next());
 		}
 		
-		return new Response(venda, null);
+		return new Response(result, null);
 	}
 	
 	@CrossOrigin(origins = "*")
-	@RequestMapping(value = "/venda/{id}", method = RequestMethod.GET)
+	@RequestMapping(value = "/{id}", method = RequestMethod.GET, produces = "application/json")
 	public Response get(@PathVariable long id){
-		venda = vendaRepository.findOne(id);
+		sale = saleRepository.findOne(id);
 		
-		return new Response(venda, null);
+		return new Response(sale, null);
 	}
 	
-	public Response vendasMes(){
+	public Response salesMes(){
 		return response;
 	}
 	
-	public Response vendasSemestre(){
+	public Response salesSemestre(){
 		return response;
 	}
 	
-	public Response vendasAno(){
+	public Response salesAno(){
 		return response;
 	}
 }

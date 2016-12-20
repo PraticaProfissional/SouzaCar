@@ -13,38 +13,38 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.com.souzacar.model.Client;
-import br.com.souzacar.repository.ClientRepository;
+import br.com.souzacar.model.Vehicle;
+import br.com.souzacar.repository.VehicleRepository;
 import br.com.souzacar.utlis.Response;
 
 @RestController
-@RequestMapping("/api/clients")
-public class ClientController {
+@RequestMapping("/api/vehicles")
+public class VehicleController {
 
 	@Autowired
-	private ClientRepository clientRepository;
+	private VehicleRepository vehicleRepository;
 	@Autowired
 	private Response response;
 	@Autowired
-	private Client client;
-
-	public ClientController() {
-		super();
-	}
-
-	public ClientController(ClientRepository clientRepository, Response response, Client client) {
-		super();
-		this.clientRepository = clientRepository;
-		this.response = response;
-		this.client = client;
-	}
+	private Vehicle vehicle;
 	
+	public VehicleController() {
+		super();
+	}
+
+	public VehicleController(VehicleRepository vehicleRepository, Response response, Vehicle vehicle) {
+		super();
+		this.vehicleRepository = vehicleRepository;
+		this.response = response;
+		this.vehicle = vehicle;
+	}
+
 	@CrossOrigin(origins = "*")
 	@RequestMapping(value = "", method = RequestMethod.POST, produces = "application/json")
-	public @ResponseBody Response insert(@RequestBody Client client){
+	public @ResponseBody Response insert(@RequestBody Vehicle vehicle){
 		try {
-			clientRepository.save(client);
-			response.setData(client);
+			vehicleRepository.save(vehicle);
+			response.setData(vehicle);
 		} catch (Exception e) {
 			response.setStatus(500, e.getMessage());
 		}
@@ -53,10 +53,10 @@ public class ClientController {
 	
 	@CrossOrigin(origins = "*")
 	@RequestMapping(value = "/{id}", method = RequestMethod.PUT, produces = "application/json")
-	public @ResponseBody Response update(@PathVariable long id, @RequestBody Client client){
+	public @ResponseBody Response update(@PathVariable long id, @RequestBody Vehicle vehicle){
 		try {
-			clientRepository.save(client);
-			response.setData(client);
+			vehicleRepository.save(vehicle);
+			response.setData(vehicle);
 		} catch (Exception e) {
 			response.setStatus(500, e.getMessage());
 		}
@@ -65,34 +65,34 @@ public class ClientController {
 	
 	@CrossOrigin(origins = "*")
 	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE, produces = "application/json")
-	public @ResponseBody Response delete(@PathVariable long id){
-		client = clientRepository.findOne(id);
+	public @ResponseBody Response  delete(@PathVariable long id){
+		vehicle = vehicleRepository.findOne(id);
 		try {
-			clientRepository.delete(client);
+			vehicleRepository.delete(vehicle);
 		} catch (Exception e) {
 			response.setStatus(500, e.getMessage());
 		}
-		return new Response(client, null);
+		return new Response(vehicle, null);
 	}
 	
 	@CrossOrigin(origins = "*")
 	@RequestMapping(value = "", method = RequestMethod.GET, produces = "application/json")
 	public Response list(){
-		List<Client> result = new ArrayList<Client>();
-		Iterator<Client> iterator = clientRepository.findAll().iterator();
+		List<Vehicle> result = new ArrayList<Vehicle>();
+		Iterator<Vehicle> iterator = vehicleRepository.findAll().iterator();
 		
-		while(iterator.hasNext()){
+		while (iterator.hasNext()) {
 			result.add(iterator.next());
 		}
-				
+		
 		return new Response(result, null);
 	}
 	
 	@CrossOrigin(origins = "*")
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET, produces = "application/json")
-	public Response list(@PathVariable long id){
-		client = clientRepository.findOne(id);
+	public Response get(@PathVariable long id){
+		vehicle = vehicleRepository.findOne(id);
 		
-		return new Response(client, null);
+		return new Response(vehicle, null);
 	}
 }

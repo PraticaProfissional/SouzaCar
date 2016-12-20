@@ -5,14 +5,12 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Table;
 
 import org.springframework.stereotype.Component;
 
 @Entity
 @Component
-@Table(schema = "souzacar")
-public class Marca {
+public class Brand {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -20,7 +18,7 @@ public class Marca {
 	@Column(name = "name", length = 128)
 	private String name;
 	
-	public Marca() {
+	public Brand() {
 		super();
 		// TODO Auto-generated constructor stub
 	}

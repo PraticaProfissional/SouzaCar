@@ -13,86 +13,86 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.com.souzacar.model.Client;
-import br.com.souzacar.repository.ClientRepository;
+import br.com.souzacar.model.Providers;
+import br.com.souzacar.repository.ProvidersRepository;
 import br.com.souzacar.utlis.Response;
 
 @RestController
-@RequestMapping("/api/clients")
-public class ClientController {
-
+@RequestMapping("/api/providers")
+public class ProvidersController {
+	
 	@Autowired
-	private ClientRepository clientRepository;
+	private ProvidersRepository providersRepository;
 	@Autowired
 	private Response response;
 	@Autowired
-	private Client client;
-
-	public ClientController() {
+	private Providers providers;
+	
+	public ProvidersController() {
 		super();
 	}
 
-	public ClientController(ClientRepository clientRepository, Response response, Client client) {
+	public ProvidersController(ProvidersRepository providersRepository, Response response, Providers providers) {
 		super();
-		this.clientRepository = clientRepository;
+		this.providersRepository = providersRepository;
 		this.response = response;
-		this.client = client;
+		this.providers = providers;
 	}
 	
-	@CrossOrigin(origins = "*")
+	@CrossOrigin(value = "*")
 	@RequestMapping(value = "", method = RequestMethod.POST, produces = "application/json")
-	public @ResponseBody Response insert(@RequestBody Client client){
+	public @ResponseBody Response insert(@RequestBody Providers fornecedor){
 		try {
-			clientRepository.save(client);
-			response.setData(client);
+			providersRepository.save(fornecedor);
+			response.setData(fornecedor);
 		} catch (Exception e) {
 			response.setStatus(500, e.getMessage());
 		}
 		return response;
 	}
-	
-	@CrossOrigin(origins = "*")
+
+	@CrossOrigin(value = "*")
 	@RequestMapping(value = "/{id}", method = RequestMethod.PUT, produces = "application/json")
-	public @ResponseBody Response update(@PathVariable long id, @RequestBody Client client){
+	public @ResponseBody Response  update(@PathVariable long id, @RequestBody Providers fornecedor){
 		try {
-			clientRepository.save(client);
-			response.setData(client);
+			providersRepository.save(fornecedor);
+			response.setData(fornecedor);
 		} catch (Exception e) {
 			response.setStatus(500, e.getMessage());
 		}
 		return response;
 	}
 	
-	@CrossOrigin(origins = "*")
+	@CrossOrigin(value = "*")
 	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE, produces = "application/json")
 	public @ResponseBody Response delete(@PathVariable long id){
-		client = clientRepository.findOne(id);
+		providers = providersRepository.findOne(id);
 		try {
-			clientRepository.delete(client);
+			providersRepository.delete(providers);
 		} catch (Exception e) {
 			response.setStatus(500, e.getMessage());
 		}
-		return new Response(client, null);
+		return new Response(providers, null);
 	}
 	
-	@CrossOrigin(origins = "*")
+	@CrossOrigin(value = "*")
 	@RequestMapping(value = "", method = RequestMethod.GET, produces = "application/json")
 	public Response list(){
-		List<Client> result = new ArrayList<Client>();
-		Iterator<Client> iterator = clientRepository.findAll().iterator();
+		List<Providers> result = new ArrayList<Providers>();
+		Iterator<Providers> iterator = providersRepository.findAll().iterator();
 		
 		while(iterator.hasNext()){
 			result.add(iterator.next());
 		}
-				
+		
 		return new Response(result, null);
 	}
 	
-	@CrossOrigin(origins = "*")
+	@CrossOrigin(value = "*")
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET, produces = "application/json")
-	public Response list(@PathVariable long id){
-		client = clientRepository.findOne(id);
+	public Response get(@PathVariable long id){
+		providers = providersRepository.findOne(id);
 		
-		return new Response(client, null);
+		return new Response(providers, null);
 	}
 }

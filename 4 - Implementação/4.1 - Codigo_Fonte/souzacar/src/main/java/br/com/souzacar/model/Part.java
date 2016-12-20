@@ -1,5 +1,6 @@
 package br.com.souzacar.model;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -9,22 +10,12 @@ import org.springframework.stereotype.Component;
 
 @Entity
 @Component
-public class Modelo {
+public class Part {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
+	@Column(name = "name", length = 128)
 	private String name;
-
-	public Modelo() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
-
-	public Modelo(Long id, String name) {
-		super();
-		this.id = id;
-		this.name = name;
-	}
-
+	
 }

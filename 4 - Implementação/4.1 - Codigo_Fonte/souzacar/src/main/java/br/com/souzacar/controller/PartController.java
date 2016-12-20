@@ -13,38 +13,38 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.com.souzacar.model.Marca;
-import br.com.souzacar.repository.MarcaRepository;
+import br.com.souzacar.model.Part;
+import br.com.souzacar.repository.PartRepository;
 import br.com.souzacar.utlis.Response;
 
 @RestController
-@RequestMapping("/api/marcas")
-public class MarcaController {
+@RequestMapping("/api/parts")
+public class PartController {
 
 	@Autowired
-	private MarcaRepository marcaRepository;
+	private PartRepository partRepository; 
 	@Autowired
 	private Response response;
 	@Autowired
-	private Marca marca;
-	
-	public MarcaController() {
+	private Part part;
+		
+	public PartController() {
 		super();
 	}
 
-	public MarcaController(MarcaRepository marcaRepository, Response response, Marca marca) {
+	public PartController(PartRepository partRepository, Response response, Part part) {
 		super();
-		this.marcaRepository = marcaRepository;
+		this.partRepository = partRepository;
 		this.response = response;
-		this.marca = marca;
+		this.part = part;
 	}
 
 	@CrossOrigin(origins = "*")
-	@RequestMapping(value = "", method = RequestMethod.POST)
-	public @ResponseBody Response insert(@RequestBody Marca marca){
+	@RequestMapping(value = "", method = RequestMethod.POST, produces = "application/json")
+	public @ResponseBody Response insert(@RequestBody Part part){
 		try {
-			marcaRepository.save(marca);
-			response.setData(marca);
+			partRepository.save(part);
+			response.setData(part);
 		} catch (Exception e) {
 			response.setStatus(500, e.getMessage());
 		}
@@ -52,11 +52,11 @@ public class MarcaController {
 	}
 	
 	@CrossOrigin(origins = "*")
-	@RequestMapping(value = "/{id}", method = RequestMethod.PUT)
-	public @ResponseBody Response update(@PathVariable long id, @RequestBody Marca marca){
+	@RequestMapping(value = "/{id}", method = RequestMethod.PUT, produces = "application/json")
+	public @ResponseBody Response update(@PathVariable long id, @RequestBody Part part){
 		try {
-			marcaRepository.save(marca);
-			response.setData(marca);
+			partRepository.save(part);
+			response.setData(part);
 		} catch (Exception e) {
 			response.setStatus(500, e.getMessage());
 		}
@@ -65,23 +65,23 @@ public class MarcaController {
 	}
 	
 	@CrossOrigin(origins = "*")
-	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
+	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE, produces = "application/json")
 	public @ResponseBody Response delete(@PathVariable long id){
-		marca = marcaRepository.findOne(id);
+		part = partRepository.findOne(id);
 		try {
-			marcaRepository.delete(marca);
+			partRepository.delete(part);
 		} catch (Exception e) {
 			response.setStatus(500, e.getMessage());
 		}
 		
-		return new Response(marca, null);
+		return new Response(part, null);
 	}
 	
 	@CrossOrigin(origins = "*")
-	@RequestMapping(value = "", method = RequestMethod.GET)
+	@RequestMapping(value = "", method = RequestMethod.GET, produces = "application/json")
 	public Response list(){
-		List<Marca> result = new ArrayList<Marca>();
-		Iterator<Marca> iterator = marcaRepository.findAll().iterator();
+		List<Part> result = new ArrayList<Part>();
+		Iterator<Part> iterator = partRepository.findAll().iterator();
 		
 		while(iterator.hasNext()){
 			result.add(iterator.next());
@@ -91,10 +91,10 @@ public class MarcaController {
 	}
 	
 	@CrossOrigin(origins = "*")
-	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
+	@RequestMapping(value = "/{id}", method = RequestMethod.GET, produces = "application/json")
 	public Response get(@PathVariable long id){
-		marca = marcaRepository.findOne(id);
+		part = partRepository.findOne(id);
 
-		return new Response(marca, null);
+		return new Response(part, null);
 	}
 }
