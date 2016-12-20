@@ -18,4 +18,28 @@ public class Budget {
 	private Client client;
 	private Vehicle vehicle;
 	private ServiceProvider serviceProvider;
+	public Long getId() {
+		return id;
+	}
+	public void setId(Long id) {
+		this.id = id;
+	}
+	public Client getClient() {
+		return client;
+	}
+	public void setClient(Client client) {
+		this.client = client;
+	}
+	public Vehicle getVehicle() {
+		return vehicle;
+	}
+	public void setVehicle(Vehicle vehicle) {
+		this.vehicle = vehicle;
+	}
+	public ServiceProvider getServiceProvider() {
+		return serviceProvider;
+	}
+	public void setServiceProvider(ServiceProvider serviceProvider) {
+		this.serviceProvider = serviceProvider;
+	}
 }

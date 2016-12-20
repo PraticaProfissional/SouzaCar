@@ -9,4 +9,13 @@ import org.springframework.stereotype.Component;
 public class Client extends Person{
 
 	private boolean isActive;
+
+	public boolean isActive() {
+		return isActive;
+	}
+
+	public void setActive(boolean isActive) {
+		this.isActive = isActive;
+	}
+	
 }
