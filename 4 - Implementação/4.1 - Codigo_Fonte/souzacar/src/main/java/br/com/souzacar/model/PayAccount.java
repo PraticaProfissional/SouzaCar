@@ -8,4 +8,5 @@ import org.springframework.stereotype.Component;
 @Component
 public class PayAccount extends Account {
 
+	private String nameProvider;
 }

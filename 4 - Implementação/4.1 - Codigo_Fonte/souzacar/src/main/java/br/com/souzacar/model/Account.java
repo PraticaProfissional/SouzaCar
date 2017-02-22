@@ -19,5 +19,7 @@ public abstract class Account {
 	protected Long id;
 	protected Calendar dueDate;
 	protected Calendar payDate;
-	protected BigDecimal value;
+	protected BigDecimal amount;
+	protected String formOfPayment;
+	protected String description;
 }
