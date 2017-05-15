@@ -1,0 +1,16 @@
+[
+    {
+        "id": 1,
+        "name": "Pagamento de prestadores",
+        "description": "João Carlos",
+        "type": 0,
+        "active": true
+    },
+    {
+        "id": 2,
+        "name": "Pagamento de luz",
+        "type": 1,
+        "description": null,
+        "active": false
+    }
+]

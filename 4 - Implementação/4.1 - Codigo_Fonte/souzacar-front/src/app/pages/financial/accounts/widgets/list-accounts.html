@@ -1,0 +1,48 @@
+<table class="table table-condensed table-hover custom-table">
+    <thead>
+        <tr>
+            <th style="width:20px"></th>
+            <th class="table-id" style="width:100px">#</th>
+            <th>Account</th>
+            <th>Description</th>
+            <th>Type</th>
+            <th style="width:150px">Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr ng-repeat="account in vm.accounts">
+            
+            <td ng-if="!account.isActive"><i class="fa fa-circle-o"></i></td>
+            <td ng-if="account.isActive"><i class="fa fa-circle"></i></td>
+            
+            <td class="table-id">
+                {{account.id}}
+            </td>
+
+            <td>
+                {{account.name}}
+            </td>
+
+            <td>
+                {{account.description ? account.description : '-'}}
+            </td>
+
+            <td>
+                {{vm.accountTypes.get(account.accountTypes)}}
+            </td>
+            
+            <td>
+                <button type="button" 
+                    ng-click="vm.edit($index)"
+                    class="btn btn-default btn-icon">
+                    <i class="fa fa-pencil-square-o"></i>
+                </button>
+            </td>
+        </tr>
+        <tr ng-if="!vm.accounts.length">
+            <td colspan="6">
+                None of account was found
+            </td>
+        </tr>
+    </tbody>
+</table>

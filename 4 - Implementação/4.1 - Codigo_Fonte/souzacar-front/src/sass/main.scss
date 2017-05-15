@@ -1,0 +1,65 @@
+@import 'common';
+
+.custom-form {
+    padding : 32px 0;
+
+    .form-group {
+        min-height: 65px;
+    }
+
+    h6 {
+        &:not(:first-child) {
+             margin-top: 32px;
+        }
+    }
+
+    .actions {
+        margin: 64px 0 0;
+
+        button {
+            float : right;
+
+            &:not(:first-child) {
+                margin-right : 16px
+            }
+        }
+    }
+}
+
+.custom-table {
+    thead {
+        th {
+            font-weight : bold;
+        }
+    }
+
+    tbody {
+        td {
+            line-height: 50px !important;
+
+            button {
+                border : none;
+
+                &:active {
+                    background : none !important;
+                    box-shadow : none;
+                }
+            }
+
+            .fa-circle {
+                color: #a6c733;
+            }
+
+            .fa-circle-o {
+                opacity : 0.5; 
+            }
+        }
+    }
+}
+
+.toast-top-right {
+    top: 75px;
+}
+
+// injector
+// endinjector
